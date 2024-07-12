@@ -25,6 +25,7 @@ public class PlaceController {
         return ResponseEntity.status(HttpStatus.CREATED).body(placeResponse);
     }
 
+
     @GetMapping
     public ResponseEntity<Flux<Place>> getAll(){
         Flux<Place> placeResponseFlux = this.placeService.getAll();
