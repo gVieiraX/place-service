@@ -2,7 +2,6 @@ package br.com.desafioapiplaces.domain;
 
 import br.com.desafioapiplaces.api.PlaceRequest;
 import com.github.slugify.Slugify;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public class PlaceService {
@@ -21,18 +20,4 @@ public class PlaceService {
     }
 
 
-    public Flux<Place> getAll() {
-        return this.placeRepository.findAll();
-    }
-
-    public Mono<Place> update(Place place) {
-        return this.placeRepository.save(place);
-    }
-
-    public Mono<Void> delete(Long id) {
-        return placeRepository.findById(id)
-                .switchIfEmpty(Mono.error(new RuntimeException("ID não encontrado")))
-                .flatMap(place -> placeRepository.deleteById(id));
-    }
 }
-
